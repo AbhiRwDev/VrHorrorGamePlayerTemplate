@@ -24,19 +24,36 @@ public class FlashLightGrab : MonoBehaviour
         if (grabbable.isGrabbed && OVRInput.GetDown(OnButton, grabbable.grabbedBy.GetController()))
         {
             flashLightToggle.ToggleOn();
-            //grabbable.grabbedBy.ForceRelease(grabbable);
+            //
         }
-       if(grabbable.isGrabbed && OVRInput.Get(GrabButton, grabbable.grabbedBy.GetController()))
-            {
-                GrabObject();
-            }
         
+       if(grabbable.isGrabbed)
+        {
+          if(OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger,grabbable.grabbedBy.GetController()))
+            {
+                bistriggerPressed = false;
+            }
+            
+            if(!bistriggerPressed&& OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, grabbable.grabbedBy.GetController()) == 1)
+            {
+                grabbable.grabbedBy.ForceRelease(grabbable);
+                bistriggerPressed = true;
+            }
+        }
+       
 
+    }
+    public void check()
+    {
+        if (grabbable.isGrabbed && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, grabbable.grabbedBy.GetController()) == 1)
+        {
+
+        }
     }
     public void GrabObject()
     {
+
        
-         grabbable.grabbedBy.ForceRelease(grabbable);
        
           
         
