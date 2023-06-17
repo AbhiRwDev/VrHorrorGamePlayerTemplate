@@ -34,10 +34,7 @@ public class FlashLightGrab : MonoBehaviour
             transform.position = TorchSlotPosition.position;
             transform.rotation = TorchSlotPosition.rotation;
         }
-        else
-        {
-          
-        }
+       
        
 
     }
