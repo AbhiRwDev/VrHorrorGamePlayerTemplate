@@ -9,6 +9,7 @@ public class FlashLightGrab : MonoBehaviour
     public bool bistriggerPressed;
 
     OVRGrabbable grabbable;
+    public Transform TorchSlotPosition;
     AudioSource FlashLightAudio;
 
     // Start is called before the first frame update
@@ -24,38 +25,22 @@ public class FlashLightGrab : MonoBehaviour
         if (grabbable.isGrabbed && OVRInput.GetDown(OnButton, grabbable.grabbedBy.GetController()))
         {
             flashLightToggle.ToggleOn();
+            FlashLightAudio.Play();
             //
         }
-        
-       if(grabbable.isGrabbed)
+
+        if (!grabbable.isGrabbed)
         {
-          if(OVRInput.GetUp(OVRInput.Button.PrimaryHandTrigger,grabbable.grabbedBy.GetController()))
-            {
-                bistriggerPressed = false;
-            }
-            
-            if(!bistriggerPressed&& OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, grabbable.grabbedBy.GetController()) == 1)
-            {
-                grabbable.grabbedBy.ForceRelease(grabbable);
-                bistriggerPressed = true;
-            }
+            transform.position = TorchSlotPosition.position;
+            transform.rotation = TorchSlotPosition.rotation;
         }
-       
-
-    }
-    public void check()
-    {
-        if (grabbable.isGrabbed && OVRInput.Get(OVRInput.Axis1D.PrimaryHandTrigger, grabbable.grabbedBy.GetController()) == 1)
+        else
         {
-
-        }
-    }
-    public void GrabObject()
-    {
-
-       
-       
           
-        
+        }
+       
+
     }
+    
+  
 }
