@@ -24,7 +24,7 @@ public class SlotScript : MonoBehaviour
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject==SlottedObject && bisFilled)//checks for slottableobject script and if the slot is empty
+        if (other.gameObject==SlottedObject)//checks for slottableobject script and if the slot is empty
         {
             SlottedObject.GetComponent<Rigidbody>().isKinematic = true;
             bisFilled = false;
