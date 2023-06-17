@@ -28,7 +28,7 @@ public class SlotScript : MonoBehaviour
         {
             SlottedObject.GetComponent<Rigidbody>().isKinematic = true;
             bisFilled = false;
-          
+            SlottedObject = null;
         }
     }
 }
